@@ -13,7 +13,7 @@ function List() {
 
     const fetchTodos = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/todos");
+            const res = await axios.get("/api/todos");
             setTodos(res.data);
         } catch (error) {
             console.error("Error fetching todos:", error);
@@ -23,7 +23,7 @@ function List() {
     const addTodo = async () => {
         if (!task.trim()) return;
         try {
-            await axios.post("http://localhost:5000/todos", { task });
+            await axios.post("/api/todos", { task });
             setTask("");
             fetchTodos();
         } catch (error) {
@@ -33,7 +33,7 @@ function List() {
 
     const toggleTodo = async (id, completed) => {
         try {
-            await axios.put(`http://localhost:5000/todos/${id}`, { completed: !completed });
+            await axios.put(`/api/todos/${id}`, { completed: !completed });
             fetchTodos();
         } catch (error) {
             console.error("Error toggling todo:", error);
@@ -42,7 +42,7 @@ function List() {
 
     const deleteTodo = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/todos/${id}`);
+            await axios.delete(`/api/todos/${id}`);
             fetchTodos();
         } catch (error) {
             console.error("Error deleting todo:", error);
