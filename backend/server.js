@@ -27,7 +27,7 @@ app.get("/todos", async (req, res) => {
 // Add new todo
 app.post("/todos", async (req, res) => {
     const { task } = req.body;
-    const result = await pool.query("INSERT INTO todos (title) VALUES ($1) RETURNING *", [task]);
+    const result = await pool.query("INSERT INTO todos (task) VALUES ($1) RETURNING *", [task]);
     res.json(result.rows[0]);
 });
 
